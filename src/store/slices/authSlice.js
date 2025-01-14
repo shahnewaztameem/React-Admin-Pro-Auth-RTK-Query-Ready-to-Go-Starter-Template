@@ -10,35 +10,29 @@ export const initialState = {
   token: localStorage.getItem(AUTH_TOKEN) || null,
 };
 
-export const signIn = createAsyncThunk(
-  'auth/login',
-  async (data, { rejectWithValue }) => {
-    const { email, password } = data;
-    try {
-      const response = await AuthService.login({ email, password });
-      const { token } = response.data;
-      localStorage.setItem(AUTH_TOKEN, token);
-      return token;
-    } catch (err) {
-      return rejectWithValue(err.response?.data?.message || 'Error');
-    }
+export const signIn = createAsyncThunk('auth/login', async (data, { rejectWithValue }) => {
+  const { email, password } = data;
+  try {
+    const response = await AuthService.login({ email, password });
+    const { token } = response.data;
+    localStorage.setItem(AUTH_TOKEN, token);
+    return token;
+  } catch (err) {
+    return rejectWithValue(err.response?.data?.message || 'Error');
   }
-);
+});
 
-export const signUp = createAsyncThunk(
-  'auth/register',
-  async (data, { rejectWithValue }) => {
-    const { email, password } = data;
-    try {
-      const response = await AuthService.register({ email, password });
-      const { token } = response.data;
-      localStorage.setItem(AUTH_TOKEN, token);
-      return token;
-    } catch (err) {
-      return rejectWithValue(err.response?.data?.message || 'Error');
-    }
+export const signUp = createAsyncThunk('auth/register', async (data, { rejectWithValue }) => {
+  const { email, password } = data;
+  try {
+    const response = await AuthService.register({ email, password });
+    const { token } = response.data;
+    localStorage.setItem(AUTH_TOKEN, token);
+    return token;
+  } catch (err) {
+    return rejectWithValue(err.response?.data?.message || 'Error');
   }
-);
+});
 
 export const signOut = createAsyncThunk('auth/logout', async () => {
   localStorage.removeItem(AUTH_TOKEN);
@@ -58,16 +52,16 @@ export const authSlice = createSlice({
       state.showMessage = true;
       state.loading = false;
     },
-    hideAuthMessage: (state) => {
+    hideAuthMessage: state => {
       state.message = '';
       state.showMessage = false;
     },
-    signOutSuccess: (state) => {
+    signOutSuccess: state => {
       state.loading = false;
       state.token = null;
       state.redirect = '/';
     },
-    showLoading: (state) => {
+    showLoading: state => {
       state.loading = true;
     },
     signInSuccess: (state, action) => {
@@ -75,9 +69,9 @@ export const authSlice = createSlice({
       state.token = action.payload;
     },
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
-      .addCase(signIn.pending, (state) => {
+      .addCase(signIn.pending, state => {
         state.loading = true;
       })
       .addCase(signIn.fulfilled, (state, action) => {
@@ -90,17 +84,17 @@ export const authSlice = createSlice({
         state.showMessage = true;
         state.loading = false;
       })
-      .addCase(signOut.fulfilled, (state) => {
+      .addCase(signOut.fulfilled, state => {
         state.loading = false;
         state.token = null;
         state.redirect = '/';
       })
-      .addCase(signOut.rejected, (state) => {
+      .addCase(signOut.rejected, state => {
         state.loading = false;
         state.token = null;
         state.redirect = '/';
       })
-      .addCase(signUp.pending, (state) => {
+      .addCase(signUp.pending, state => {
         state.loading = true;
       })
       .addCase(signUp.fulfilled, (state, action) => {
@@ -116,13 +110,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const {
-  authenticated,
-  showAuthMessage,
-  hideAuthMessage,
-  signOutSuccess,
-  showLoading,
-  signInSuccess,
-} = authSlice.actions;
+export const { authenticated, showAuthMessage, hideAuthMessage, signOutSuccess, showLoading, signInSuccess } = authSlice.actions;
 
 export default authSlice.reducer;
