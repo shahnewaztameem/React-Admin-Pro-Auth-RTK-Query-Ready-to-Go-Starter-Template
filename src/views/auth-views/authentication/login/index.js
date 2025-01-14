@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, Row, Col } from 'antd';
 import { useSelector } from 'react-redux';
 import LoginForm from '../../components/LoginForm';
+import { Link } from 'react-router-dom';
 
 const backgroundStyle = {
   backgroundImage: 'url(/img/others/img-17.jpg)',
@@ -31,7 +32,7 @@ function Login(props) {
                   </Col>
                   <p>
                     Don't have an account yet?{' '}
-                    <a href="/auth/register">Sign Up</a>
+                    <Link to="/auth/register">Sign Up</Link>
                   </p>
                 </Row>
               </div>

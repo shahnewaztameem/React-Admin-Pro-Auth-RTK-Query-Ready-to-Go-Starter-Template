@@ -1,5 +1,5 @@
 const dev = {
-  API_ENDPOINT_URL: `${process.env.REACT_APP_API_BASE_URL}/api/v1`,
+  API_ENDPOINT_URL: `${'https://mail-template-demo-api.sslwireless.com'}/api/`,
 };
 
 const prod = {

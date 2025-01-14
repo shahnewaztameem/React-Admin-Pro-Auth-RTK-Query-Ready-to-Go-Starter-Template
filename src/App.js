@@ -6,6 +6,7 @@ import store from './store';
 import history from './history';
 import Layouts from './layouts';
 import { THEME_CONFIG } from './configs/AppConfig';
+import "nprogress/nprogress.css";
 import './lang';
 
 const themes = {
