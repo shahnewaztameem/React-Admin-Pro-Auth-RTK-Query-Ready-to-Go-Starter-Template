@@ -1,12 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export class Icon extends Component {
-	render() {
-		const { type, className  } = this.props;
-		return (
-			<>{React.createElement(type, { className: className })}</>
-		)
-	}
+  render() {
+    const { type, className } = this.props;
+    return <>{React.createElement(type, { className })}</>;
+  }
 }
 
-export default Icon
+export default Icon;

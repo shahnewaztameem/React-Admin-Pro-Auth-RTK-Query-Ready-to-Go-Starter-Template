@@ -1,22 +1,21 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { env } from "configs/EnvironmentConfig";
-import { signOut } from "store/slices/authSlice";
-
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { env } from 'configs/EnvironmentConfig';
+import { signOut } from 'store/slices/authSlice';
 
 const baseQuery = fetchBaseQuery({
   baseUrl: env.API_ENDPOINT_URL,
   prepareHeaders: (headers, { getState }) => {
-    const token = getState().auth.token;
+    const { token } = getState().auth;
     if (token) {
-      headers.set("authorization", `Bearer ${token}`);
-      headers.set("ngrok-skip-browser-warning", "69420");
+      headers.set('authorization', `Bearer ${token}`);
+      headers.set('ngrok-skip-browser-warning', '69420');
     }
     return headers;
   },
 });
 
 const baseQueryWithReauth = async (args, api, extraOptions) => {
-  let result = await baseQuery(args, api, extraOptions);
+  const result = await baseQuery(args, api, extraOptions);
 
   // Check if the status is 401
   if (result.error && result.error.status === 401) {
@@ -28,7 +27,7 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
 };
 
 export const apiSlice = createApi({
-  reducerPath: "api",
+  reducerPath: 'api',
   baseQuery: baseQueryWithReauth, // Use the custom base query
   tagTypes: [],
   endpoints: (builder) => ({}),

@@ -1,11 +1,11 @@
 import antdZhCn from 'antd/es/locale/zh_CN';
-import zhMsg from "../locales/zh_CN.json";
+import zhMsg from '../locales/zh_CN.json';
 
 const ZhLang = {
   antd: antdZhCn,
   locale: 'zh',
   messages: {
-    ...zhMsg
+    ...zhMsg,
   },
 };
 export default ZhLang;

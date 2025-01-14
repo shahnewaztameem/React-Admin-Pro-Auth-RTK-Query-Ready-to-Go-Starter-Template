@@ -1,18 +1,18 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { Button, Form, Input, Divider, Alert } from "antd";
-import { MailOutlined, LockOutlined } from "@ant-design/icons";
-import PropTypes from "prop-types";
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { Button, Form, Input, Divider, Alert } from 'antd';
+import { MailOutlined, LockOutlined } from '@ant-design/icons';
+import PropTypes from 'prop-types';
 import {
   signIn,
   showLoading,
   showAuthMessage,
   hideAuthMessage,
-} from "store/slices/authSlice";
-import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+} from 'store/slices/authSlice';
+import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
-export const LoginForm = (props) => {
+export function LoginForm(props) {
   const navigate = useNavigate();
 
   const {
@@ -32,8 +32,8 @@ export const LoginForm = (props) => {
   } = props;
 
   const initialCredential = {
-    email: "user1@themenate.net",
-    password: "2005ipo",
+    email: 'user1@themenate.net',
+    password: '2005ipo',
   };
 
   const onLogin = (values) => {
@@ -62,7 +62,7 @@ export const LoginForm = (props) => {
           marginBottom: showMessage ? 20 : 0,
         }}
       >
-        <Alert type="error" showIcon message={message}></Alert>
+        <Alert type="error" showIcon message={message} />
       </motion.div>
       <Form
         layout="vertical"
@@ -76,11 +76,11 @@ export const LoginForm = (props) => {
           rules={[
             {
               required: true,
-              message: "Please input your email",
+              message: 'Please input your email',
             },
             {
-              type: "email",
-              message: "Please enter a validate email!",
+              type: 'email',
+              message: 'Please enter a validate email!',
             },
           ]}
         >
@@ -92,8 +92,8 @@ export const LoginForm = (props) => {
             <div
               className={`${
                 showForgetPassword
-                  ? "d-flex justify-content-between w-100 align-items-center"
-                  : ""
+                  ? 'd-flex justify-content-between w-100 align-items-center'
+                  : ''
               }`}
             >
               <span>Password</span>
@@ -110,7 +110,7 @@ export const LoginForm = (props) => {
           rules={[
             {
               required: true,
-              message: "Please input your password",
+              message: 'Please input your password',
             },
           ]}
         >
@@ -126,7 +126,7 @@ export const LoginForm = (props) => {
       </Form>
     </>
   );
-};
+}
 
 LoginForm.propTypes = {
   otherSignIn: PropTypes.bool,
@@ -141,7 +141,13 @@ LoginForm.defaultProps = {
 
 const mapStateToProps = ({ auth }) => {
   const { loading, message, showMessage, token, redirect } = auth;
-  return { loading, message, showMessage, token, redirect };
+  return {
+    loading,
+    message,
+    showMessage,
+    token,
+    redirect,
+  };
 };
 
 const mapDispatchToProps = {

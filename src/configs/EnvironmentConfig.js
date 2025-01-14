@@ -12,11 +12,11 @@ const test = {
 
 const getEnv = () => {
   switch (process.env.NODE_ENV) {
-    case "development":
+    case 'development':
       return dev;
-    case "production":
+    case 'production':
       return prod;
-    case "test":
+    case 'test':
       return test;
     default:
       break;

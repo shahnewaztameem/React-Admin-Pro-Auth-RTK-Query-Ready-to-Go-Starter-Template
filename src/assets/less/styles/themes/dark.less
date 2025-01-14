@@ -1,10 +1,10 @@
 @theme: dark;
 
-@gray-dark:                 @white;
-@gray:                      #455560;
-@gray-light:                #72849a;
-@gray-lighter:              #ededed;
-@gray-lightest:             #f7f7f8;
+@gray-dark: @white;
+@gray: #455560;
+@gray-light: #72849a;
+@gray-lighter: #ededed;
+@gray-lightest: #f7f7f8;
 
 @component-background: #283142;
 @popover-background: lighten(@component-background, 15%);
@@ -18,7 +18,9 @@
 @item-hover-bg: #364663;
 
 @shadow-color: rgba(0, 0, 0, 0.75);
-@shadow-2: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.58),
+@shadow-2:
+  0 3px 6px -4px rgba(0, 0, 0, 0.12),
+  0 6px 16px 0 rgba(0, 0, 0, 0.58),
   0 9px 28px 8px rgba(0, 0, 0, 0.15);
 
 @text-color: #b4bed2;
@@ -60,10 +62,13 @@
 @skeleton-color: lighten(@component-background, 10%);
 
 @header-bg-base: #283142;
-@header-box-shadow: 0 1px 8px -1px rgba(0,0,0,.75);
+@header-box-shadow: 0 1px 8px -1px rgba(0, 0, 0, 0.75);
 @page-header-alt-bg: #2f3a50;
 
 @scrumboard-bg: #2e4056;
 @scrumboard-add-bg: #405875;
 
-@picker-date-hover-range-color: lighten(@picker-basic-cell-active-with-range-color, 15%);
+@picker-date-hover-range-color: lighten(
+  @picker-basic-cell-active-with-range-color,
+  15%
+);
