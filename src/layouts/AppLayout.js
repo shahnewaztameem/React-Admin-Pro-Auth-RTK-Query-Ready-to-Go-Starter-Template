@@ -23,7 +23,7 @@ const AppContent = styled('div')`
   min-height: calc(100vh - ${TEMPLATE.CONTENT_HEIGHT_OFFSET}px);
   position: relative;
 
-  ${(props) =>
+  ${props =>
     props.isNavTop
       ? `
         max-width: ${TEMPLATE.CONTENT_MAX_WIDTH}px;
@@ -46,10 +46,7 @@ const AppContent = styled('div')`
 export function AppLayout({ navCollapsed, navType, direction, children }) {
   const location = useLocation();
 
-  const currentRouteInfo = utils.getRouteInfo(
-    navigationConfig,
-    location.pathname
-  );
+  const currentRouteInfo = utils.getRouteInfo(navigationConfig, location.pathname);
   const screens = utils.getBreakPoint(useBreakpoint());
   const isMobile = screens.length === 0 ? false : !screens.includes('lg');
   const isNavSide = navType === TEMPLATE.NAV_TYPE_SIDE;
@@ -59,9 +56,7 @@ export function AppLayout({ navCollapsed, navType, direction, children }) {
     if (isNavTop || isMobile) {
       return 0;
     }
-    return navCollapsed
-      ? TEMPLATE.SIDE_NAV_COLLAPSED_WIDTH
-      : TEMPLATE.SIDE_NAV_WIDTH;
+    return navCollapsed ? TEMPLATE.SIDE_NAV_COLLAPSED_WIDTH : TEMPLATE.SIDE_NAV_WIDTH;
   };
 
   const getLayoutDirectionGutter = () => {
@@ -79,22 +74,14 @@ export function AppLayout({ navCollapsed, navType, direction, children }) {
       <HeaderNav isMobile={isMobile} />
       {isNavTop && !isMobile ? <TopNav routeInfo={currentRouteInfo} /> : null}
       <Layout>
-        {isNavSide && !isMobile ? (
-          <SideNav routeInfo={currentRouteInfo} />
-        ) : null}
+        {isNavSide && !isMobile ? <SideNav routeInfo={currentRouteInfo} /> : null}
         <Layout style={getLayoutDirectionGutter()}>
           <AppContent isNavTop={isNavTop}>
-            <PageHeader
-              display={currentRouteInfo?.breadcrumb}
-              title={currentRouteInfo?.title}
-            />
+            <PageHeader display={currentRouteInfo?.breadcrumb} title={currentRouteInfo?.title} />
             <Content className="h-100">
-              <Suspense fallback={<Loading cover="content" />}>
-                {children}
-              </Suspense>
+              <Suspense fallback={<Loading cover="content" />}>{children}</Suspense>
             </Content>
           </AppContent>
-          <Footer />
         </Layout>
       </Layout>
       {isMobile && <MobileNav routeInfo={currentRouteInfo} />}
