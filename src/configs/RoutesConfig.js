@@ -48,7 +48,7 @@ export const publicRoutes = [
 export const protectedRoutes = [
   {
     key: 'dashboard.default',
-    path: `${APP_PREFIX_PATH}/`,
+    path: `${APP_PREFIX_PATH}/dashboards/default`,
     component: React.lazy(() => withProgress(import('views/app-views/dashboards/default'))),
   },
 ];
