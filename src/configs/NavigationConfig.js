@@ -12,7 +12,7 @@ const dashBoardNavTree = [
     submenu: [
       {
         key: 'dashboards-default',
-        path: `${APP_PREFIX_PATH}/dashboards/default`,
+        path: `${APP_PREFIX_PATH}/`,
         title: 'sidenav.dashboard.default',
         icon: DashboardOutlined,
         breadcrumb: false,

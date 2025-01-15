@@ -32,7 +32,7 @@ function Login(props) {
                   </Col>
                   <p>
                     Don't have an account yet?{' '}
-                    <Link to="/auth/register">Sign Up</Link>
+                    <Link to="/register">Sign Up</Link>
                   </p>
                 </Row>
               </div>
